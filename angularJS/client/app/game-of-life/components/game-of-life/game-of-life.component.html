@@ -1,0 +1,79 @@
+<div class="container">
+
+  <h1 class="m-t-10 m-b-10">Welcome to Conway's Game of Life</h1>
+
+  <div class="col-lg-6 m-t-10 m-b-10 border-right-1">
+
+    <h4>A quick view at the rules:</h4>
+    <div>
+      <ul>
+        <li>Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.</li>
+        <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+        <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
+        <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+      </ul>
+    </div>
+
+    <div class="row">
+      <h3>
+        Want to load a preset? Choose from the below options. Select any preset and click on Load Preset.
+      </h3>
+    </div>
+
+    <div class="m-10">
+      <form name="preset">
+        <div class="gol-presets">
+          <div class="m-10" ng-repeat="preset in vm.gameData.presets">
+            <label>
+              <input type="radio" id="'preset{{$index}}" ng-model="vm.selectedPresetIndex" value="{{$index}}">
+                <span class="font-14">{{preset.name}}</span>
+            </label>
+            <div ng-repeat="presetRow in preset.matrix track by $index">
+              <div ng-repeat="element in presetRow track by $index" ng-class="{ 'gol-tile-live': element, 'gol-tile-dead': !element }">
+              </div>
+            </div>
+            <br>
+          </div>
+        </div>
+        <button id="loadPreset" class="btn btn-success m-10 p-10" type="submit" ng-click="vm.loadSelectedPreset()">Load Preset</button>
+
+      </form>
+    </div>
+
+  </div>
+
+  <div class="col-lg-6 m-t-10 m-b-10">
+
+    <h2>Lets Play!</h2>
+
+    <form>
+      <span>Select grid size:</span>
+      <div class="row m-l-10">
+        <span>Height: </span> <input id="gridHeight" type="number" ng-model="vm.gridHeight" min="1" />
+        <span>Width: </span> <input id="gridWidth" type="number" ng-model="vm.gridWidth" min="1" />
+      </div>
+      <button id="generateEmptyGrid" type="submit" ng-click="vm.generateEmptyGrid()" class="btn btn-primary m-b-10">Generate Empty Grid</button>
+    </form>
+
+    <h4 class="m-10">
+      Click on any tile to toggle it's state!
+    </h4>
+    <span class="m-10">note: You cannot modify states if game is running. Pause before you modify.</span>
+
+    <div class="gol-grid m-t-10">
+      <div ng-repeat="gameRow in vm.gameData.displayMatrix track by $index">
+        <div ng-repeat="element in gameRow track by $index" ng-class="{ 'gol-tile-live': element, 'gol-tile-dead': !element }" ng-click="vm.toggleTileValue($parent.$index, $index)">
+        </div>
+      </div>
+    </div>
+
+    <span>Game Modes: </span>
+    <button id="singleRun" class="btn m-10 p-10" ng-class="{'btn-danger': vm.gameRunning, 'btn-success': !vm.gameRunning}" ng-disabled="vm.gameRunning"
+      ng-click="vm.runSingleTick()">Single Tick</button>
+    <button id="fiveTickRun" class="btn m-10 p-10" ng-class="{'btn-danger': vm.gameRunning, 'btn-success': !vm.gameRunning}" ng-disabled="vm.gameRunning"
+      ng-click="vm.runFiveTicks()">Run 5 ticks</button>
+    <button id="continuousRun" class="btn m-10 p-10" ng-class="{'btn-danger': vm.gameRunning, 'btn-success': !vm.gameRunning}" ng-click="vm.runContinuous()">{{vm.gameRunning ? 'Stop the game' : 'Start Continuous Run'}}</button>
+
+  </div>
+
+</div>

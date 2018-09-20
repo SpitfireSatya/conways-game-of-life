@@ -1,0 +1,82 @@
+
+<div class="container">
+
+  <h1 class="m-t-10 m-b-10">Welcome to Conway's Game of Life</h1>
+
+  <div class="col-lg-6 m-t-10 m-b-10 border-right-1">
+
+    <h4>A quick view at the rules:</h4>
+    <div>
+      <ul>
+        <li>Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.</li>
+        <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+        <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
+        <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+      </ul>
+    </div>
+
+    <div class="row">
+      <h3>
+        Want to load a preset? Choose from the below options. Select any preset and click on Load Preset.
+      </h3>
+    </div>
+
+    <div class="m-10">
+      <form name="preset">
+        <div class="gol-presets">
+          <div class="m-10" id="gamePreset" *ngFor="let preset of gameData.presets; let $index = index; trackBy: trackByFn">
+            <label>
+                <input type="radio" id="preset{{$index}}" [(ngModel)]="selectedPresetIndex" 
+                [ngModelOptions]="{standalone: true}" value="{{$index}}">
+                  <span class="font-14">{{preset.name}}</span>
+              </label>
+            <div *ngFor="let presetRow of preset.matrix; trackBy: trackByFn">
+              <div *ngFor="let element of presetRow; trackBy: trackByFn" [ngClass]="{ 'gol-tile-live': element, 'gol-tile-dead': !element }">
+              </div>
+            </div>
+            <br>
+          </div>
+        </div>
+        <button id="loadPreset" class="btn btn-success m-10 p-10" type="submit" (click)="loadSelectedPreset()">Load Preset</button>
+
+      </form>
+    </div>
+
+  </div>
+
+  <div class="col-lg-6 m-t-10 m-b-10">
+
+    <h2>Lets Play!</h2>
+
+    <form>
+      <span>Select grid size:</span>
+      <div class="row m-l-10">
+        <span>Height: </span> <input id="gridHeight" type="number" [(ngModel)]="gridHeight" [ngModelOptions]="{standalone: true}" min="1" />
+        <span>Width: </span> <input id="gridWidth" type="number" [(ngModel)]="gridWidth" [ngModelOptions]="{standalone: true}" min="1" />
+      </div>
+      <button id="generateEmptyGrid" type="submit" (click)="generateEmptyGrid()" class="btn btn-primary m-b-10">Generate Empty Grid</button>
+    </form>
+
+    <h4 class="m-10">
+      Click on any tile to toggle it's state!
+    </h4>
+    <span class="m-10">note: You cannot modify states if game is running. Pause before you modify.</span>
+
+    <div class="gol-grid m-t-10">
+      <div *ngFor="let gameRow of gameData.displayMatrix; let i = index; trackBy: trackByFn">
+        <div id="gameTile" *ngFor="let element of gameRow; let j = index; trackBy: trackByFn" [ngClass]="{ 'gol-tile-live': element, 'gol-tile-dead': !element }" (click)="toggleTileValue(i, j)">
+        </div>
+      </div>
+    </div>
+
+    <span>Game Modes: </span>
+    <button id="singleRun" class="btn m-10 p-10" [ngClass]="{'btn-danger': gameRunning, 'btn-success': !gameRunning}" [disabled]="gameRunning"
+      (click)="runSingleTick()">Single Tick</button>
+    <button id="fiveTickRun" class="btn m-10 p-10" [ngClass]="{'btn-danger': gameRunning, 'btn-success': !gameRunning}"
+      [disabled]="gameRunning" (click)="runFiveTicks()">Run 5 ticks</button>
+    <button id="continuousRun" class="btn m-10 p-10" [ngClass]="{'btn-danger': gameRunning, 'btn-success': !gameRunning}"
+      (click)="runContinuous()">{{gameRunning ? 'Stop the game' : 'Start Continuous Run'}}</button>
+
+  </div>
+
+</div>

@@ -1,0 +1,71 @@
+
+.m-t-10 {
+  margin-top: 10px;
+}
+
+.m-b-10 {
+  margin-bottom: 10px;
+}
+
+.m-l-10 {
+  margin-left: 10px;
+}
+
+.m-10 {
+  margin: 10px;
+}
+
+.p-10 {
+  padding: 10px;
+}
+
+.font-14 {
+  font-size: 14px;
+}
+
+input {
+  margin: 10px;
+  padding: 5px;
+}
+
+.border-right-1 {
+  border-right: 1px solid black;
+  min-height: 600px;
+}
+
+.gol-presets {
+  font-size: 0;
+  white-space: nowrap;
+  width: 500px;
+  height: 300px;
+  overflow-x: scroll;
+  overflow-y: scroll;  
+  border: 1px solid darkblue;
+}
+
+.gol-grid {
+  font-size: 0;
+  text-align: center;
+  white-space: nowrap;
+  width: 500px;
+  height: 300px;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  border: 1px solid darkblue;
+}
+
+.gol-tile-live {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-color: blue;
+  border: 1px solid darkblue;
+}
+
+.gol-tile-dead {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-color: transparent;
+  border: 1px solid black;
+}
