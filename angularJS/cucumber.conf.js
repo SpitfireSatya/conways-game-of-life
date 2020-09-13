@@ -12,4 +12,4 @@ module.exports = {
   },
   profile: false,
   'no-source': true
-}
+};

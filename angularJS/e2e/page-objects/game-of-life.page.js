@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 
 (function () {
   'use strict';
@@ -54,8 +55,8 @@
       return element(by.repeater('element in gameRow').row(0));
     }
 
-  }
+  };
 
   module.exports = gameOfLife;
 
-}());
+})();

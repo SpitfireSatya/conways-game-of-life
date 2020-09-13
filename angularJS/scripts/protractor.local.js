@@ -8,13 +8,13 @@
 
   bsConfig.open = false;
   
-  function browserSyncInitCb () {
-    var protractor = protractorLauncher.init('protractor.conf');
+  function browserSyncInitCb() {
+    protractorLauncher.init('protractor.conf');
     process.on('exit', function () {
-      browserSync.exit()
+      browserSync.exit();
     });
   }
 
   browserSync.init(bsConfig, browserSyncInitCb);
 
-}());
+})();

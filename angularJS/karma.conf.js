@@ -11,7 +11,7 @@ module.exports = function (config) {
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'client/app/game-of-life/game-of-life.module.js',
-      { pattern: 'client/app/**/*.js', watched: true, included: true, served: true }
+      {pattern: 'client/app/**/*.js', watched: true, included: true, served: true}
     ],
 
     preprocessors: {
@@ -53,11 +53,11 @@ module.exports = function (config) {
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
 
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadless'],
 
-    singleRun: false,
+    singleRun: true,
 
-    autoWatch: true,
+    autoWatch: false,
 
     concurrency: Infinity,
 
@@ -73,4 +73,4 @@ module.exports = function (config) {
 
   });
 
-}
+};

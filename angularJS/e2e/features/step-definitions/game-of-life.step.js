@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 
 (function () {
   'use strict';
@@ -10,14 +11,14 @@
 
   var expect = chai.expect;
 
-  var { defineSupportCode } = require('cucumber');
+  var {defineSupportCode} = require('cucumber');
 
-  defineSupportCode(function ({ setDefaultTimeout }) {
+  defineSupportCode(function ({setDefaultTimeout}) {
     setDefaultTimeout(10 * 1000);
   });
 
   // Scenario: Game of Life on load
-  defineSupportCode(function ({ Given, Then }) {
+  defineSupportCode(function ({Given, Then}) {
 
     Given('I go to {string}', function (site, callback) {
       gameOfLife.loadPage();
@@ -51,10 +52,11 @@
   });
 
   // Scenario: Game of Life load preset
-  defineSupportCode(function ({ When, Then }) {
+  defineSupportCode(function ({When, Then}) {
 
     When('I select some preset', function () {
-      return gameOfLife.getPresetByIndex(0).element(by.css('input')).click();
+      return gameOfLife.getPresetByIndex(0).element(by.css('input'))
+        .click();
     });
 
     When('click on load preset', function () {
@@ -69,14 +71,16 @@
   });
 
   // Scenario: Generate empty grid
-  defineSupportCode(function ({ When, Then }) {
+  defineSupportCode(function ({When, Then}) {
 
     When('I enter the input height as {int}', function (int) {
-      return gameOfLife.getInputById('gridHeight').clear().sendKeys('10');
+      return gameOfLife.getInputById('gridHeight').clear()
+        .sendKeys('10');
     });
 
     When('I enter the input width as {int}', function (int) {
-      return gameOfLife.getInputById('gridWidth').clear().sendKeys('10');
+      return gameOfLife.getInputById('gridWidth').clear()
+        .sendKeys('10');
     });
 
     When('I click on button with id {string}', function (buttonId) {
@@ -92,7 +96,7 @@
   });
 
   // Scenario: Click on tile
-  defineSupportCode(function ({ When, Then }) {
+  defineSupportCode(function ({When, Then}) {
 
     When('I click on a dead tile', function () {
       return gameOfLife.getOneGameTile().click();
@@ -115,10 +119,11 @@
   });
 
   // Scenario: Single tick execution
-  defineSupportCode(function ({ When, Then }) {
+  defineSupportCode(function ({When, Then}) {
 
     When('I select the preset with index {int}', function (int) {
-      return gameOfLife.getPresetByIndex(1).element(by.css('input')).click();
+      return gameOfLife.getPresetByIndex(1).element(by.css('input'))
+        .click();
     });
 
     When('I click on load preset button', function () {
@@ -138,7 +143,7 @@
   });
 
   // Scenario: Five tick execution
-  defineSupportCode(function ({ When, Then }) {
+  defineSupportCode(function ({When, Then}) {
 
     When('I click on the button {string} with id fiveTickRun', function (string) {
       return gameOfLife.getButtonById('fiveTickRun').click();
@@ -165,7 +170,7 @@
   });
 
   // Scenario: Continuous run
-  defineSupportCode(function ({ When, Then }) {
+  defineSupportCode(function ({When, Then}) {
 
     When('I click on the button {string} with id continuousRun', function (string) {
       return gameOfLife.getButtonById('continuousRun').click();
@@ -203,4 +208,4 @@
 
   });
 
-}());  
+})();  

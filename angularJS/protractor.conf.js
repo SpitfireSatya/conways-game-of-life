@@ -15,7 +15,7 @@ exports.config = {
   frameworkPath: require.resolve('protractor-cucumber-framework'),
 
   capabilities: {
-    'browserName': 'chrome'
+    browserName: 'chrome'
   },
 
   // Spec patterns are relative to this directory.
